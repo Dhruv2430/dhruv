@@ -5,10 +5,10 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const images = [
-  { src: "/PERSONAL/photo2.jpeg", alt: "Focused work", style: "col-span-12 md:col-span-8 aspect-video rounded-3xl" },
-  { src: "/PERSONAL/photo3.jpeg", alt: "Speaking", style: "col-span-6 md:col-span-4 aspect-square md:aspect-[4/5] rounded-3xl md:translate-y-12" },
-  { src: "/PERSONAL/photo4.jpeg", alt: "Team", style: "col-span-6 md:col-span-5 aspect-square rounded-3xl" },
-  { src: "/PERSONAL/photo5.jpeg", alt: "Award", style: "col-span-12 md:col-span-7 aspect-[4/3] rounded-3xl md:-translate-y-8" },
+  { src: "/PERSONAL/photo2.jpeg", alt: "Focused work", style: "col-span-12 md:col-span-8 aspect-video rounded-3xl", objectPos: "top" },
+  { src: "/PERSONAL/photo3.jpeg", alt: "Speaking", style: "col-span-6 md:col-span-4 aspect-square md:aspect-[4/5] rounded-3xl md:translate-y-12", objectPos: "center" },
+  { src: "/PERSONAL/photo4.jpeg", alt: "Team", style: "col-span-6 md:col-span-5 aspect-square rounded-3xl", objectPos: "center" },
+  { src: "/PERSONAL/photo5.jpeg", alt: "Award", style: "col-span-12 md:col-span-7 aspect-[4/3] rounded-3xl md:-translate-y-8", objectPos: "top" },
 ];
 
 export function ImageGallery() {
@@ -61,6 +61,7 @@ export function ImageGallery() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-110 filter saturate-50 group-hover:saturate-100"
+                style={{ objectPosition: image.objectPos }}
                 loading="lazy"
               />
             </motion.div>

@@ -1,32 +1,36 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink, Code } from "lucide-react";
 
 const projects = [
   {
-    title: "CloudFlow Architecture",
-    description: "A highly scalable infrastructure management dashboard visualizing AWS resources in real-time. Built for enterprise cloud teams aiming to reduce technical debt.",
-    tech: ["Next.js", "AWS API", "Tailwind", "Framer Motion"],
+    title: "AI Code Review Platform",
+    description: "Built an AI-powered code review tool that analyzes code quality and suggests improvements. Integrated LLM APIs for automated review generation, providing developers with instant, actionable feedback on their pull requests.",
+    tech: ["React", "Node.js", "MongoDB", "AWS"],
+    image: "/ProjectImage/Aicodereview.png",
     link: "#",
-    github: "#",
+    github: "https://github.com/Dhruv2430",
+    year: "2025"
+  },
+  {
+    title: "E-Commerce Platform",
+    description: "Developed a full-stack e-commerce application with authentication, cart management, and payment integration. Implemented responsive UI with optimized backend APIs for a seamless shopping experience.",
+    tech: ["React", "Node.js", "MongoDB", "Docker", "AWS"],
+    image: "/ProjectImage/e-commerce.png",
+    link: "#",
+    github: "https://github.com/Dhruv2430",
     year: "2024"
   },
   {
-    title: "NexCommerce",
-    description: "Headless e-commerce storefront with sub-second page loads. Integrates a custom Node.js backend with Stripe and PostgreSQL for a deeply resilient architecture.",
-    tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
+    title: "Task Management App",
+    description: "Built a collaborative task management system with real-time updates and role-based access control. Designed scalable REST APIs and authentication workflows for team productivity.",
+    tech: ["React", "Express.js", "MongoDB"],
+    image: "/ProjectImage/task.png",
     link: "#",
-    github: "#",
-    year: "2023"
-  },
-  {
-    title: "DevMetrics",
-    description: "Developer productivity tool tracking GitHub PR times, CI/CD pipeline durations, and deployment frequency to optimize engineering velocity.",
-    tech: ["TypeScript", "Express", "MongoDB", "OAuth"],
-    link: "#",
-    github: "#",
-    year: "2022"
+    github: "https://github.com/Dhruv2430",
+    year: "2024"
   }
 ];
 
@@ -69,12 +73,19 @@ export function Projects() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-24 items-center group`}
               >
-                {/* Visual Area (Massive abstract placeholder for cinematic feel) */}
-                <div className="w-full lg:w-3/5 aspect-[4/3] bg-surface/30 rounded-[2rem] border border-border/50 relative overflow-hidden flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
-                  <div className="w-1/2 aspect-square rounded-full bg-primary/10 blur-[80px] absolute transition-transform duration-[2s] group-hover:scale-150" />
-                  <span className="font-mono text-xs tracking-[0.3em] uppercase text-text-muted absolute bottom-8 right-8">
-                    {project.title.replace(/\s+/g, '_').toUpperCase()}
+                {/* Project Screenshot */}
+                <div className="w-full lg:w-3/5 aspect-[4/3] rounded-[2rem] border border-border/50 relative overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 60vw"
+                    className="object-cover object-top transition-transform duration-[2s] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
+                  />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <span className="absolute bottom-6 right-6 font-mono text-[10px] tracking-[0.3em] uppercase text-background/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                    {project.year}
                   </span>
                 </div>
 
@@ -108,6 +119,8 @@ export function Projects() {
                     </a>
                     <a
                       href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-text-muted hover:text-foreground transition-colors"
                     >
                       Source <Code size={16} />

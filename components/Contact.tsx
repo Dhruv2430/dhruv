@@ -24,7 +24,7 @@ export function Contact() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
               </span>
-              <span className="font-mono text-xs tracking-widest uppercase text-foreground">Available for new opportunities</span>
+              <span className="font-mono text-xs tracking-widest uppercase text-foreground">Open to internships & opportunities</span>
             </div>
 
             <h2 className="font-display text-[clamp(3rem,6vw,5.5rem)] leading-[0.9] tracking-[-0.02em] mb-8">
@@ -34,7 +34,7 @@ export function Contact() {
             </h2>
 
             <p className="text-xl text-text-muted mb-12 max-w-md font-sans leading-relaxed">
-              Whether you need to scale your infrastructure or build a high-performance application from scratch, I&apos;m ready to help.
+              Whether you need a MERN stack developer for your project or want to discuss a collaboration, I&apos;m ready to connect.
             </p>
 
             <div className="space-y-8">
@@ -44,7 +44,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-mono text-xs tracking-widest uppercase text-text-muted mb-1">Direct Email</p>
-                  <a href="mailto:hello@dhruvpanchal.dev" className="font-display text-2xl hover:text-primary transition-colors">hello@dhruvpanchal.dev</a>
+                  <a href="mailto:dhruvpanchal897@gmail.com" className="font-display text-2xl hover:text-primary transition-colors">dhruvpanchal897@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-center gap-6 group">
@@ -53,7 +53,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="font-mono text-xs tracking-widest uppercase text-text-muted mb-1">Based In</p>
-                  <p className="font-display text-2xl">Gujarat, India</p>
+                  <p className="font-display text-2xl">Ahmedabad, Gujarat, India</p>
                 </div>
               </div>
             </div>

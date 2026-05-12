@@ -5,26 +5,33 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const experiences = [
   {
-    role: "Senior Cloud Engineer",
-    company: "Tech Innovations Inc.",
-    year: "2023",
-    description: "Architected serverless ecosystems handling millions of requests daily. Reduced AWS costs by 30% through targeted refactoring of ECS tasks and Lambda cold-start optimizations.",
-    tech: ["AWS", "Terraform", "Node.js", "Docker"]
+    role: "Full Stack Developer Intern",
+    company: "Kaizenth Teachology LLP",
+    location: "Ahmedabad, Gujarat",
+    year: "2025",
+    period: "Sep 2025 – Dec 2025",
+    description: "Built scalable web applications using the MERN stack and deployed them on AWS cloud infrastructure. Reduced API response times by 40% through backend optimization and database query improvements.",
+    highlights: [
+      "Developed 10+ responsive web applications with optimized frontend performance",
+      "Implemented CI/CD pipelines using Docker and AWS services for automated deployments",
+      "Collaborated with developers and designers to deliver production-ready applications",
+    ],
+    tech: ["React", "Node.js", "MongoDB", "AWS", "Docker"]
   },
   {
-    role: "Full-Stack Developer",
-    company: "Digital Solutions LLC",
-    year: "2021",
-    description: "Spearheaded the migration of a legacy monolithic system into a decoupled Next.js frontend and microservice backend. Improved core web vitals and developer velocity.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"]
+    role: "Tech Event Intern",
+    company: "Laracon India",
+    location: "Ahmedabad, Gujarat",
+    year: "2026",
+    period: "Jan 2026",
+    description: "Assisted in managing on-ground operations for a large-scale developer conference. Coordinated with volunteers to ensure smooth event execution across all stages.",
+    highlights: [
+      "Supported speakers with technical setup, stage management, and session coordination",
+      "Helped manage attendee flow and technical troubleshooting during sessions",
+      "Coordinated with volunteers to ensure smooth event execution",
+    ],
+    tech: ["Event Management", "Technical Support", "Coordination"]
   },
-  {
-    role: "Frontend Engineer",
-    company: "Creative Agency",
-    year: "2019",
-    description: "Translated high-fidelity design prototypes into robust, interactive React interfaces for enterprise clients, focusing on state management and performance.",
-    tech: ["React", "Redux", "Sass", "Figma"]
-  }
 ];
 
 export function Experience() {
@@ -60,11 +67,14 @@ export function Experience() {
                 
                 {/* Left Side: Sticky Year */}
                 <div className="md:col-span-4 relative h-full">
-                  <div className="md:sticky md:top-32 flex items-center gap-6">
+                  <div className="md:sticky md:top-32 flex flex-col gap-2">
                     <span className="font-display text-5xl md:text-7xl text-background/10 group-hover:text-primary transition-colors duration-500">
                       {exp.year}
                     </span>
-                    <div className="w-12 h-[1px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+                    <span className="font-mono text-xs tracking-widest text-background/40">
+                      {exp.period}
+                    </span>
+                    <div className="w-12 h-[1px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 mt-2" />
                   </div>
                 </div>
 
@@ -78,11 +88,22 @@ export function Experience() {
                     className="p-8 md:p-12 rounded-[2rem] bg-background/5 border border-background/10 backdrop-blur-sm group-hover:bg-background/10 transition-colors duration-500"
                   >
                     <h3 className="font-display text-3xl md:text-4xl mb-2">{exp.role}</h3>
-                    <p className="text-primary font-mono text-sm tracking-widest uppercase mb-8">{exp.company}</p>
+                    <p className="text-primary font-mono text-sm tracking-widest uppercase mb-2">{exp.company}</p>
+                    <p className="text-background/40 font-mono text-xs tracking-wide mb-8">{exp.location}</p>
                     
-                    <p className="text-lg text-background/70 font-sans leading-relaxed mb-10">
+                    <p className="text-lg text-background/70 font-sans leading-relaxed mb-8">
                       {exp.description}
                     </p>
+
+                    {/* Highlights */}
+                    <ul className="space-y-3 mb-10">
+                      {exp.highlights.map((highlight, j) => (
+                        <li key={j} className="flex items-start gap-3 text-background/60 font-sans text-[15px]">
+                          <div className="w-5 h-[1px] bg-primary mt-3 shrink-0" />
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
 
                     <div className="flex flex-wrap gap-3">
                       {exp.tech.map((tech, j) => (

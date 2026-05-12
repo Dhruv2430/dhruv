@@ -5,20 +5,22 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const educationData = {
   college: {
-    degree: "Bachelor of Engineering in Information Technology",
-    school: "Gujarat Technological University",
-    year: "2017 - 2021",
-    cgpa: "8.5 / 10.0",
-    description: "Graduated with First Class Distinction. Specialized in distributed systems and advanced algorithms.",
-    highlights: ["Led University Coding Club", "1st Place State Hackathon", "Published Paper on Distributed Systems"]
+    degree: "Bachelor of Engineering in Computer Engineering",
+    school: "Silver Oak University",
+    location: "Ahmedabad, Gujarat",
+    year: "2023 – 2027",
+    cgpa: "8.15",
+    description: "Pursuing Computer Engineering with focus on full-stack development, cloud computing, and modern software architecture.",
+    highlights: ["AWS Community Volunteer", "IEEE Branch Member", "Active Open Source Contributor"]
   },
   school: {
-    degree: "Higher Secondary Education",
-    school: "Science Board",
-    year: "2015 - 2017",
-    cgpa: "90%",
-    description: "Focused on Mathematics, Physics, and Computer Science fundamentals.",
-    highlights: ["Top 1% in State Board", "Science Exhibition Winner"]
+    degree: "Higher Secondary Education (Science)",
+    school: "M.Y. High School",
+    location: "Dahod, Gujarat",
+    year: "2021 – 2023",
+    cgpa: "A",
+    description: "Completed science stream with focus on Mathematics, Physics, and Computer Science fundamentals.",
+    highlights: ["Science Stream", "Strong Foundation in Mathematics"]
   }
 };
 
@@ -80,8 +82,11 @@ export function Education() {
                   </div>
                 </div>
                 
-                <p className="text-xl text-primary mb-8 font-sans">
+                <p className="text-xl text-primary mb-2 font-sans">
                   {educationData[activeTab].school}
+                </p>
+                <p className="text-sm text-text-muted mb-8 font-mono tracking-wide">
+                  {educationData[activeTab].location}
                 </p>
                 
                 <p className="text-lg text-text-muted leading-relaxed mb-12 max-w-2xl font-sans">

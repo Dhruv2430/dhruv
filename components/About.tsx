@@ -39,18 +39,18 @@ export function About() {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <h3 className="font-display text-4xl mb-8">
-                I engineer systems that scale elegantly.
+                Building real-world applications with modern tools.
               </h3>
               
               <div className="space-y-8 text-lg text-text-muted font-sans leading-relaxed">
                 <p>
-                  As a Full-Stack Developer and AWS Cloud Engineer, my focus lies at the intersection of robust cloud architecture and seamless user experiences. I don&apos;t just build features; I architect solutions designed for resilience, performance, and long-term maintainability.
+                  I&apos;m a Full-Stack Developer and Computer Engineering student at Silver Oak University, Ahmedabad. I build scalable web applications using the MERN stack and deploy them on AWS cloud infrastructure.
                 </p>
                 <p>
-                  My journey involves tearing down complex monolithic structures and rebuilding them into agile, microservice-driven ecosystems. Whether it&apos;s a high-availability Next.js frontend or a deeply integrated serverless AWS backend, I prioritize technical excellence.
+                  During my internship at Kaizenth Teachology, I developed 10+ responsive web apps, reduced API response times by 40%, and implemented CI/CD pipelines with Docker and AWS. I focus on writing clean, maintainable code that delivers real business value.
                 </p>
                 <p>
-                  Beyond the code, I am deeply invested in the technical community—sharing knowledge, organizing hackathons, and constantly refining my understanding of what makes software truly great.
+                  Beyond coding, I&apos;m actively involved in tech communities — volunteering with AWS Community, JS Gujarat, IEEE, and Laracon India — because I believe collaboration makes us all better developers.
                 </p>
               </div>
 
@@ -66,9 +66,9 @@ export function About() {
             <motion.div style={{ y: yStats }} className="flex flex-col gap-6 sticky top-1/4 pt-12 lg:pt-0">
               
               {[
-                { label: "Years Experience", value: "03+", desc: "Building production apps" },
-                { label: "Projects Delivered", value: "20+", desc: "From MVP to enterprise" },
-                { label: "Cloud Certifications", value: "02", desc: "AWS Architect & Developer" },
+                { label: "Internship Experience", value: "01", desc: "Full-stack development" },
+                { label: "Web Apps Built", value: "10+", desc: "Responsive & optimized" },
+                { label: "Communities", value: "04", desc: "AWS, JS Gujarat, IEEE, Laracon" },
               ].map((stat, i) => (
                 <div key={i} className="group relative bg-background border border-border/50 rounded-3xl p-6 hover:bg-surface/20 transition-colors duration-500 overflow-hidden">
                   <div className="relative z-10 flex justify-between items-end">

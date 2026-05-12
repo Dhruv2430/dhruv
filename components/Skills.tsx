@@ -4,25 +4,20 @@ import { motion } from "framer-motion";
 
 const skillCategories = [
   {
-    title: "Frontend Architecture",
+    title: "Frontend",
     description: "Building responsive, accessible, and performant user interfaces.",
-    skills: ["React", "Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"]
+    skills: ["React.js", "Next.js", "JavaScript", "TypeScript", "Tailwind CSS"]
   },
   {
-    title: "Backend Systems",
+    title: "Backend",
     description: "Designing resilient APIs and robust server-side logic.",
-    skills: ["Node.js", "Express", "GraphQL", "REST Architecture"]
+    skills: ["Node.js", "Express.js", "REST APIs", "MongoDB"]
   },
   {
-    title: "Cloud & Infrastructure",
-    description: "Deploying and managing scalable AWS ecosystems.",
-    skills: ["AWS ECS", "AWS Lambda", "Terraform", "Docker", "CI/CD Pipelines"]
+    title: "Cloud & DevOps",
+    description: "Deploying and managing scalable cloud infrastructure.",
+    skills: ["AWS", "Docker", "CI/CD", "Linux", "Git & GitHub"]
   },
-  {
-    title: "Data Engineering",
-    description: "Optimizing database interactions and caching layers.",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "DynamoDB"]
-  }
 ];
 
 export function Skills() {
@@ -36,13 +31,13 @@ export function Skills() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-24 md:w-2/3"
         >
-          <h2 className="font-display text-[var(--text-display-2)] leading-none mb-6">Technical Ecosystem</h2>
+          <h2 className="font-display text-[var(--text-display-2)] leading-none mb-6">Technical Stack</h2>
           <p className="text-xl text-background/60 font-sans max-w-xl">
-            A carefully curated set of tools and frameworks that allow me to architect solutions from the database up to the user interface.
+            A focused set of modern tools and frameworks I use to build full-stack applications from the database to the user interface.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
           {skillCategories.map((category, i) => (
             <motion.div
               key={i}
@@ -75,7 +70,7 @@ export function Skills() {
 
       {/* Decorative large background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center opacity-[0.02] pointer-events-none z-0">
-        <span className="font-display text-[15vw] whitespace-nowrap leading-none select-none">SYSTEMS</span>
+        <span className="font-display text-[15vw] whitespace-nowrap leading-none select-none">STACK</span>
       </div>
     </section>
   );

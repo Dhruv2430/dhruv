@@ -1,9 +1,33 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, MapPin, Mail as MailIcon } from "lucide-react";
+import { Send, MapPin, Mail as MailIcon, CheckCircle } from "lucide-react";
 
 export function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    // Open mailto with form data
+    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:dhruvpanchal897@gmail.com?subject=${subject}&body=${body}`;
+
+    setTimeout(() => {
+      setStatus("sent");
+      setTimeout(() => {
+        setStatus("idle");
+        setFormData({ name: "", email: "", message: "" });
+      }, 3000);
+    }, 500);
+  };
+
   return (
     <section id="contact" className="py-32 relative border-t border-border/40 overflow-hidden">
       {/* Cinematic background mesh */}
@@ -59,7 +83,7 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* RIGHT: Glassmorphic Form */}
+          {/* RIGHT: Functional Form */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -72,15 +96,18 @@ export function Contact() {
               {/* Animated subtle glow inside card */}
               <div className="absolute -inset-24 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
               
-              <form className="space-y-8 relative z-10">
+              <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
                     <label htmlFor="name" className="font-mono text-xs tracking-widest uppercase text-text-muted">Name</label>
                     <input
                       type="text"
                       id="name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-transparent border-b border-border py-3 font-sans text-lg focus:border-primary focus:outline-none transition-colors placeholder:text-text-muted/30"
-                      placeholder="John Doe"
+                      placeholder="Your name"
                     />
                   </div>
                   <div className="space-y-3">
@@ -88,8 +115,11 @@ export function Contact() {
                     <input
                       type="email"
                       id="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-transparent border-b border-border py-3 font-sans text-lg focus:border-primary focus:outline-none transition-colors placeholder:text-text-muted/30"
-                      placeholder="john@example.com"
+                      placeholder="your@email.com"
                     />
                   </div>
                 </div>
@@ -99,17 +129,32 @@ export function Contact() {
                   <textarea
                     id="message"
                     rows={4}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-transparent border-b border-border py-3 font-sans text-lg focus:border-primary focus:outline-none transition-colors placeholder:text-text-muted/30 resize-none"
                     placeholder="Tell me about your project..."
                   />
                 </div>
 
                 <button
-                  type="button"
-                  className="w-full inline-flex items-center justify-center gap-4 px-8 py-5 bg-foreground text-background rounded-full hover:bg-primary transition-colors duration-300 group/btn overflow-hidden relative"
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="w-full inline-flex items-center justify-center gap-4 px-8 py-5 bg-foreground text-background rounded-full hover:bg-primary transition-colors duration-300 group/btn overflow-hidden relative disabled:opacity-60"
                 >
-                  <span className="relative z-10 font-sans font-medium text-lg">Send Message</span>
-                  <Send size={18} className="relative z-10 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                  {status === "sent" ? (
+                    <>
+                      <CheckCircle size={18} className="relative z-10 text-primary" />
+                      <span className="relative z-10 font-sans font-medium text-lg">Opening Email Client...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="relative z-10 font-sans font-medium text-lg">
+                        {status === "sending" ? "Sending..." : "Send Message"}
+                      </span>
+                      <Send size={18} className="relative z-10 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                    </>
+                  )}
                 </button>
               </form>
             </div>

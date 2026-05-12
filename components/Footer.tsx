@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Briefcase, MessageCircle, Mail, ArrowUp, Heart, Sparkles } from "lucide-react";
+import { ArrowUp, Heart, Sparkles } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -13,10 +13,10 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: Code2, label: "GitHub", href: "https://github.com/Dhruv2430" },
-  { icon: Briefcase, label: "LinkedIn", href: "https://www.linkedin.com/in/dhruvpanchal-dev/" },
-  { icon: MessageCircle, label: "LeetCode", href: "https://leetcode.com/u/2S4eTOtSDy/" },
-  { icon: Mail, label: "Email", href: "mailto:dhruvpanchal897@gmail.com" },
+  { label: "GitHub", href: "https://github.com/Dhruv2430" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/dhruvpanchal-dev/" },
+  { label: "LeetCode", href: "https://leetcode.com/u/2S4eTOtSDy/" },
+  { label: "Email", href: "mailto:dhruvpanchal897@gmail.com" },
 ];
 
 const lineReveal = {
@@ -28,7 +28,7 @@ const lineReveal = {
     transition: {
       duration: 0.9,
       delay: 0.15 + i * 0.15,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   }),
 };

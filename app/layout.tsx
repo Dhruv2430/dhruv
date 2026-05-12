@@ -5,6 +5,20 @@ import { Navbar } from "@/components/Navbar";
 export const metadata: Metadata = {
   title: "Dhruv Panchal | Full-Stack Developer",
   description: "Portfolio of Dhruv Panchal — MERN stack developer building scalable web applications with React, Node.js, and AWS.",
+  icons: {
+    icon: "/newFavi.png",
+  },
+  openGraph: {
+    title: "Dhruv Panchal | Full-Stack Developer",
+    description: "MERN stack developer building scalable web applications with React, Node.js, and AWS cloud infrastructure.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dhruv Panchal | Full-Stack Developer",
+    description: "MERN stack developer building scalable web applications with React, Node.js, and AWS cloud infrastructure.",
+  },
 };
 
 export default function RootLayout({

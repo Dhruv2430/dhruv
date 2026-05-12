@@ -140,8 +140,8 @@ export function Hero() {
                 whileDrag={{ scale: 1.05 }}
                 className="w-56 h-64 bg-surface/20 backdrop-blur-md rounded-3xl border border-white/20 flex flex-col items-start justify-end p-6 shadow-2xl cursor-grab active:cursor-grabbing"
               >
-                 <div className="text-xs font-mono text-primary mb-2">01 // AWS</div>
-                 <div className="font-display text-2xl">Serverless</div>
+                 <div className="text-xs font-mono text-primary mb-2">01 // REACT</div>
+                 <div className="font-display text-2xl">Frontend</div>
                  <div className="w-12 h-[1px] bg-foreground/20 mt-4" />
               </motion.div>
             </div>
@@ -158,8 +158,8 @@ export function Hero() {
                 whileDrag={{ scale: 1.05 }}
                 className="w-48 h-48 bg-background/40 backdrop-blur-md rounded-3xl border border-white/10 flex flex-col items-start justify-end p-5 shadow-xl cursor-grab active:cursor-grabbing"
               >
-                 <div className="text-xs font-mono text-text-muted mb-2">02 // NEXT.JS</div>
-                 <div className="font-display text-xl">Full-Stack</div>
+                 <div className="text-xs font-mono text-text-muted mb-2">02 // NODE.JS</div>
+                 <div className="font-display text-xl">Backend</div>
                  <div className="w-8 h-[1px] bg-foreground/10 mt-3" />
               </motion.div>
             </div>
@@ -176,15 +176,15 @@ export function Hero() {
                 whileDrag={{ scale: 1.05 }}
                 className="w-40 h-40 bg-primary/90 text-background rounded-3xl flex flex-col items-start justify-end p-5 shadow-[0_0_30px_rgba(109,152,134,0.3)] cursor-grab active:cursor-grabbing"
               >
-                 <div className="text-xs font-mono text-background/80 mb-2">03 // GSAP</div>
-                 <div className="font-display text-lg">Motion UI</div>
+                 <div className="text-xs font-mono text-background/80 mb-2">03 // AWS</div>
+                 <div className="font-display text-lg">Cloud</div>
                  <div className="w-8 h-[1px] bg-background/40 mt-3" />
               </motion.div>
             </div>
 
             {/* Circular Accent */}
             <div className="hero-right-element parallax-layer-2 absolute bottom-1/4 -right-6 w-24 h-24 border border-primary/30 rounded-full flex items-center justify-center z-0">
-               <span className="font-mono text-[10px] tracking-widest text-text-muted opacity-50 rotate-90">SYSTEMS</span>
+               <span className="font-mono text-[10px] tracking-widest text-text-muted opacity-50 rotate-90">BUILD</span>
             </div>
 
             {/* Grid Crosses */}

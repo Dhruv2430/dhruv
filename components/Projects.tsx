@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ExternalLink, Code } from "lucide-react";
+import { Code } from "lucide-react";
 
 const projects = [
   {
@@ -112,18 +112,12 @@ export function Projects() {
 
                   <div className="flex items-center gap-6">
                     <a
-                      href={project.link}
-                      className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1"
-                    >
-                      Live Demo <ExternalLink size={16} />
-                    </a>
-                    <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-text-muted hover:text-foreground transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1"
                     >
-                      Source <Code size={16} />
+                      View Source <Code size={16} />
                     </a>
                   </div>
                 </div>

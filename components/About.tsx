@@ -17,17 +17,17 @@ export function About() {
     <section id="about" ref={containerRef} className="py-32 relative border-t border-border/40">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
-          
+
           {/* LEFT: Huge Vertical Text & Path */}
           <div className="hidden lg:block lg:col-span-2 relative h-full min-h-[500px]">
-             <motion.div style={{ y: yText }} className="sticky top-1/3">
-               <h2 className="font-display text-[10rem] leading-none text-surface/30 -rotate-90 origin-top-left absolute top-full -left-12 pointer-events-none select-none">
-                 ABOUT
-               </h2>
-             </motion.div>
-             
-             {/* Decorative vertical line */}
-             <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
+            <motion.div style={{ y: yText }} className="sticky top-1/3">
+              <h2 className="font-display text-[10rem] leading-none text-surface/30 -rotate-90 origin-top-left absolute top-full -left-12 pointer-events-none select-none">
+                ABOUT
+              </h2>
+            </motion.div>
+
+            {/* Decorative vertical line */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" />
           </div>
 
           {/* CENTER: Main Narrative */}
@@ -41,7 +41,7 @@ export function About() {
               <h3 className="font-display text-4xl mb-8">
                 Building real-world applications with modern tools.
               </h3>
-              
+
               <div className="space-y-8 text-lg text-text-muted font-sans leading-relaxed">
                 <p>
                   I&apos;m a Full-Stack Developer and Computer Engineering student at Silver Oak University, Ahmedabad. I build scalable web applications using the MERN stack and deploy them on AWS cloud infrastructure.
@@ -64,7 +64,7 @@ export function About() {
           {/* RIGHT: Floating Stats & Elements */}
           <div className="lg:col-span-4 relative h-full">
             <motion.div style={{ y: yStats }} className="flex flex-col gap-6 sticky top-1/4 pt-12 lg:pt-0">
-              
+
               {[
                 { label: "Internship Experience", value: "01", desc: "Full-stack development" },
                 { label: "Web Apps Built", value: "10+", desc: "Responsive & optimized" },

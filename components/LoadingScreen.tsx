@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 // ─────────────────────────────────────────────
 // Constants
 // ─────────────────────────────────────────────
-const TOTAL_DURATION = 2000; // ms before exit begins
 const COLORS = {
   bg: "#F6F6F6",
   primary: "#6D9886",
@@ -108,11 +108,35 @@ function GeometricLines() {
 export function LoadingScreen({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
+  const [pageReady, setPageReady] = useState(false);
+  const [minAnimDone, setMinAnimDone] = useState(false);
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  
+  const shouldReduceMotion = useReducedMotion();
 
-  const runAnimation = useCallback(() => {
-    if (!containerRef.current) return;
+  // Detect real page load
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      setIsLoading(false);
+      setIsExiting(false);
+      return;
+    }
+
+    const handleLoad = () => setPageReady(true);
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
+  }, [shouldReduceMotion]);
+
+  useGSAP(() => {
+    if (shouldReduceMotion) return;
+
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     timelineRef.current = tl;
 
@@ -139,36 +163,35 @@ export function LoadingScreen({ children }: { children: React.ReactNode }) {
       0.5
     );
 
+    // Mark minimum animation intro as complete
+    tl.add(() => setMinAnimDone(true), "+=0.2");
 
+    // Pause until page is fully loaded
+    tl.addPause();
 
-    // ── Phase 5: Hold & exit prep (1.5 – 1.8s) ──
-    tl.to(".geo-line", { opacity: 0, duration: 0.3, stagger: 0.03 }, 1.5);
+    // ── Phase 5: Hold & exit prep ──
+    tl.to(".geo-line", { opacity: 0, duration: 0.3, stagger: 0.03 });
+    tl.call(() => setIsExiting(true));
 
-    // Start exit
-    tl.call(() => setIsExiting(true), [], TOTAL_DURATION / 1000);
-  }, []);
+  }, { scope: containerRef, dependencies: [shouldReduceMotion] });
 
+  // Play the exit sequence once both conditions are met
   useEffect(() => {
-    // Small delay to ensure DOM is painted
-    const raf = requestAnimationFrame(() => {
-      runAnimation();
-    });
-    return () => {
-      cancelAnimationFrame(raf);
-      timelineRef.current?.kill();
-    };
-  }, [runAnimation]);
+    if (pageReady && minAnimDone && !shouldReduceMotion) {
+      timelineRef.current?.play();
+    }
+  }, [pageReady, minAnimDone, shouldReduceMotion]);
 
   // After framer-motion exit completes
-  const handleExitComplete = useCallback(() => {
+  const handleExitComplete = () => {
     setIsLoading(false);
-  }, []);
+  };
 
   return (
     <>
       <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
         {!isExiting ? null : null}
-        {isLoading && !isExiting ? (
+        {isLoading && !isExiting && !shouldReduceMotion ? (
           <motion.div
             key="loading-screen"
             ref={containerRef}
@@ -241,11 +264,12 @@ export function LoadingScreen({ children }: { children: React.ReactNode }) {
         ) : null}
       </AnimatePresence>
 
-      {/* Main content — always mounted, revealed after loading */}
+      {/* Main content — always mounted for SEO, but hidden from layout/paint until loaded */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: isLoading ? 0 : 1 }}
+        animate={{ opacity: isLoading && !shouldReduceMotion ? 0 : 1 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
+        className={isLoading && !shouldReduceMotion ? "h-0 overflow-hidden pointer-events-none" : ""}
       >
         {children}
       </motion.div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
+import { ClientShell } from "@/components/ClientShell";
 
 export const metadata: Metadata = {
   title: "Dhruv Panchal | Full-Stack Developer",
@@ -33,11 +34,14 @@ export default function RootLayout({
         <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden" suppressHydrationWarning>
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
+        <ClientShell>
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+        </ClientShell>
       </body>
     </html>
   );
 }
+

@@ -74,8 +74,8 @@ export function Contributions() {
             </h2>
           </div>
           <p className="text-lg text-text-muted max-w-sm font-sans">
-            Software isn't built in a vacuum. Engaging with the community is how
-            we push the industry forward.
+            {"Software isn't built in a vacuum. Engaging with the community is how"}
+            {" we push the industry forward."}
           </p>
         </motion.div>
 

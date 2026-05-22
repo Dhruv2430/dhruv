@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback, type MouseEvent as ReactMouseEvent } from "react";
+import { useRef, useState, useEffect, type MouseEvent as ReactMouseEvent } from "react";
 import {
   motion,
   useMotionValue,
@@ -91,7 +91,10 @@ function getDockConfig(width: number): DockSizeConfig {
 function useIsTouchDevice() {
   const [isTouch, setIsTouch] = useState(false);
   useEffect(() => {
-    setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    const frame = requestAnimationFrame(() => {
+      setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
   return isTouch;
 }
@@ -99,10 +102,13 @@ function useIsTouchDevice() {
 function useWindowWidth() {
   const [width, setWidth] = useState(1024); // SSR-safe default
   useEffect(() => {
-    setWidth(window.innerWidth);
     const handle = () => setWidth(window.innerWidth);
+    const frame = requestAnimationFrame(handle);
     window.addEventListener("resize", handle, { passive: true });
-    return () => window.removeEventListener("resize", handle);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", handle);
+    };
   }, []);
   return width;
 }
@@ -214,6 +220,12 @@ function DockItem({
     </>
   );
 
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const targetHref = item.isRoute 
+    ? item.href 
+    : (isHome ? item.href : `/${item.href}`);
+
   const motionProps = {
     style: hasMagnification ? { width: size, height: size, y } : { width: config.baseSize, height: config.baseSize },
     onMouseEnter: () => !isTouch && setIsHovered(true),
@@ -221,19 +233,19 @@ function DockItem({
     className: "relative flex items-center justify-center shrink-0",
   };
 
-  // Use Next.js Link for route items, regular <a> for hash sections
-  if (item.isRoute) {
+  // Use Next.js Link for route items or when we are not on the homepage
+  if (item.isRoute || !isHome) {
     return (
-      <NextLink href={item.href} ref={ref} legacyBehavior={false}>
-        <motion.div {...motionProps}>
+      <NextLink href={targetHref} ref={ref} passHref legacyBehavior>
+        <motion.a {...motionProps}>
           {innerContent}
-        </motion.div>
+        </motion.a>
       </NextLink>
     );
   }
 
   return (
-    <motion.a ref={ref} href={item.href} {...motionProps}>
+    <motion.a ref={ref} href={targetHref} {...motionProps}>
       {innerContent}
     </motion.a>
   );

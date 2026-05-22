@@ -116,13 +116,19 @@ export function LoadingScreen({ children }: { children: React.ReactNode }) {
   
   const shouldReduceMotion = useReducedMotion();
 
-  // Detect real page load
-  useEffect(() => {
+  // Adjust state during render if reduced motion is preferred, avoiding set-state in effect
+  const [prevReduceMotion, setPrevReduceMotion] = useState<boolean | null>(null);
+  if (shouldReduceMotion !== prevReduceMotion) {
+    setPrevReduceMotion(shouldReduceMotion ?? null);
     if (shouldReduceMotion) {
       setIsLoading(false);
       setIsExiting(false);
-      return;
     }
+  }
+
+  // Detect real page load
+  useEffect(() => {
+    if (shouldReduceMotion) return;
 
     const handleLoad = () => setPageReady(true);
 

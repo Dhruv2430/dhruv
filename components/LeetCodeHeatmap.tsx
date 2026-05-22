@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useMemo, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { ThreeEvent, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useSpring, a } from '@react-spring/three';
 import { Text } from '@react-three/drei';
@@ -132,7 +132,7 @@ export function LeetCodeHeatmap({ data, onHover }: LeetCodeHeatmapProps) {
     meshRef.current.instanceMatrix.needsUpdate = true;
   });
 
-  const handlePointerMove = (e: any) => {
+  const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     if (e.instanceId !== undefined && e.instanceId !== hoveredId) {
       setHoveredId(e.instanceId);
@@ -144,7 +144,7 @@ export function LeetCodeHeatmap({ data, onHover }: LeetCodeHeatmapProps) {
     }
   };
 
-  const handlePointerOut = (e: any) => {
+  const handlePointerOut = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation();
     setHoveredId(null);
     document.body.style.cursor = 'auto';

@@ -70,19 +70,30 @@ const links = [
   },
 ];
 
+const PARTICLE_PRESETS = [
+  { width: 12, height: 12, left: "25%", top: "35%", duration: 7, delay: 0.5 },
+  { width: 6, height: 6, left: "70%", top: "15%", duration: 9, delay: 1.2 },
+  { width: 14, height: 14, left: "45%", top: "75%", duration: 6, delay: 0.1 },
+  { width: 8, height: 8, left: "15%", top: "60%", duration: 8, delay: 2.3 },
+  { width: 10, height: 10, left: "80%", top: "80%", duration: 7.5, delay: 1.7 },
+  { width: 5, height: 5, left: "55%", top: "25%", duration: 9.5, delay: 3.1 },
+  { width: 11, height: 11, left: "30%", top: "50%", duration: 6.5, delay: 0.8 },
+  { width: 7, height: 7, left: "90%", top: "40%", duration: 8.5, delay: 2.0 },
+];
+
 // Floating particles for background atmosphere
 function FloatingParticles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 8 }).map((_, i) => (
+      {PARTICLE_PRESETS.map((p, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full bg-primary/10"
           style={{
-            width: 4 + Math.random() * 10,
-            height: 4 + Math.random() * 10,
-            left: `${10 + Math.random() * 80}%`,
-            top: `${10 + Math.random() * 80}%`,
+            width: p.width,
+            height: p.height,
+            left: p.left,
+            top: p.top,
           }}
           animate={{
             y: [-20, 20, -20],
@@ -91,9 +102,9 @@ function FloatingParticles() {
             scale: [1, 1.3, 1],
           }}
           transition={{
-            duration: 5 + Math.random() * 5,
+            duration: p.duration,
             repeat: Infinity,
-            delay: Math.random() * 4,
+            delay: p.delay,
             ease: "easeInOut",
           }}
         />

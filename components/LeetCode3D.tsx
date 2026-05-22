@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, Suspense, useEffect } from 'react';
+import React, { useState, Suspense, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, ContactShadows } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,7 +10,6 @@ import {
   MousePointer2, 
   Move3d, 
   RotateCw, 
-  ZoomIn,
   User,
   Settings2,
   PieChart,
@@ -21,7 +20,6 @@ import {
   Network,
   Package
 } from 'lucide-react';
-import * as THREE from 'three';
 import { useLeetCode } from '@/hooks/useLeetCode';
 import { LeetCodeHeatmap } from './LeetCodeHeatmap';
 import { SubmissionData } from '@/types/leetcode';
@@ -30,11 +28,11 @@ export function LeetCode3D() {
   const { data, stats, loading, error } = useLeetCode('2S4eTOtSDy');
   const [tooltip, setTooltip] = useState<{ data: SubmissionData | null; pos: { x: number; y: number } | null }>({ data: null, pos: null });
   const [autoRotate, setAutoRotate] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState<string>('');
 
-  useEffect(() => {
+  const lastUpdated = useMemo(() => {
+    if (data.length === 0) return '';
     const now = new Date();
-    setLastUpdated(now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' • ' + now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }));
+    return now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) + ' • ' + now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }, [data]);
 
   const handleHover = (hoverData: SubmissionData | null, position: { x: number; y: number } | null) => {
@@ -166,11 +164,6 @@ export function LeetCode3D() {
               <Move3d className="w-4 h-4 text-[#6B6B6B]" />
               <span className="text-[#6B6B6B] text-[11px] font-semibold">Drag to Rotate</span>
               <span className="w-1 h-1 rounded-full bg-[#6B6B6B]/30 mx-1"></span>
-            </div>
-            {/* Adding Scroll to Zoom back conditionally to match the image, but kept as a static pill */}
-            <div className="bg-[#ffffff] border border-[#D9CAB3]/45 rounded-full px-4 py-2 flex items-center gap-2 shadow-[0_2px_10px_rgb(0,0,0,0.02)] hidden md:flex">
-              <ZoomIn className="w-4 h-4 text-[#6B6B6B]" />
-              <span className="text-[#6B6B6B] text-[11px] font-semibold">Scroll to Zoom</span>
             </div>
             <div className="bg-[#ffffff] border border-[#D9CAB3]/45 rounded-full px-4 py-2 flex items-center gap-2 shadow-[0_2px_10px_rgb(0,0,0,0.02)] hidden lg:flex">
               <MousePointer2 className="w-4 h-4 text-[#6B6B6B]" />

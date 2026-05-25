@@ -73,7 +73,7 @@ export function ImageGallery() {
             whileHover={{ scale: 1.1, rotate: 10 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <span className="uppercase tracking-widest leading-loose">Visual<br/>Diary<br/>2024</span>
+            <span className="uppercase tracking-widest leading-loose">Visual<br/>Diary<br/>2025-26</span>
           </motion.div>
         </div>
       </div>

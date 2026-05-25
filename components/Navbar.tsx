@@ -25,6 +25,8 @@ import {
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 
+const MotionLink = motion.create(NextLink);
+
 type NavItem = {
   name: string;
   href: string;
@@ -236,11 +238,9 @@ function DockItem({
   // Use Next.js Link for route items or when we are not on the homepage
   if (item.isRoute || !isHome) {
     return (
-      <NextLink href={targetHref} ref={ref} passHref legacyBehavior>
-        <motion.a {...motionProps}>
-          {innerContent}
-        </motion.a>
-      </NextLink>
+      <MotionLink href={targetHref} ref={ref} {...motionProps}>
+        {innerContent}
+      </MotionLink>
     );
   }
 

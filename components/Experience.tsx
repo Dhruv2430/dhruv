@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const experiences = [
   {
     role: "Full Stack Developer Intern",
-    company: "Kaizenth Teachology LLP",
+    company: "Kaizenith Technologies LLP",
     location: "Ahmedabad, Gujarat",
     year: "2025",
     period: "Sep 2025 – Dec 2025",

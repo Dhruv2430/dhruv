@@ -47,7 +47,7 @@ export function About() {
                   I&apos;m a Full-Stack Developer and Computer Engineering student at Silver Oak University, Ahmedabad. I build scalable web applications using the MERN stack and deploy them on AWS cloud infrastructure.
                 </p>
                 <p>
-                  During my internship at Kaizenth Teachology, I developed 10+ responsive web apps, reduced API response times by 40%, and implemented CI/CD pipelines with Docker and AWS. I focus on writing clean, maintainable code that delivers real business value.
+                  During my internship at Kaizenith Technologies, I developed 10+ responsive web apps, reduced API response times by 40%, and implemented CI/CD pipelines with Docker and AWS. I focus on writing clean, maintainable code that delivers real business value.
                 </p>
                 <p>
                   Beyond coding, I&apos;m actively involved in tech communities — volunteering with AWS Community, JS Gujarat, IEEE, and Laracon India — because I believe collaboration makes us all better developers.
